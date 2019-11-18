@@ -1,0 +1,17 @@
+{
+  "name": "speech_tosubtitle_translator.app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron .",
+    "lint": "prettier --write ./*.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^7.1.1",
+    "electron-reload": "^1.5.0",
+    "prettier": "1.19.1"
+  }
+}
