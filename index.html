@@ -21,7 +21,6 @@
             const file = event.dataTransfer.files[0]
             drag_area.innerText = file.name
             console.log(file.path)
-            // ipcRenderer.send('ondragstart', '/path/to/item')
             return false;
         }
     </script>

@@ -1,4 +1,5 @@
-const { app, BrowserWindow, ipcMain } = require("electron");
+const { app, BrowserWindow, ipcMain, ipcRenderer } = require("electron");
+const PDFWindow = require('electron-pdf-window')
 require("electron-reload")(__dirname, {
   electron: require("${__dirname}/../../node_modules/electron")
 });
@@ -13,12 +14,15 @@ function createWindow() {
     width: 800,
     height: 600,
     webPreferences: {
-      nodeIntegration: true
+        nodeIntegration: true,
+        plugins: true
     }
   });
+  PDFWindow.addSupport(win)
 
-  // and load the index.html of the app.
-  win.loadFile("index.html");
+  // and load the index.html of the app
+    // win.loadFile("index.html");
+  win.loadURL('file:///Users/nozo-moto/Downloads/README.pdf')
 
   // Open the DevTools.
   win.webContents.openDevTools();
@@ -31,14 +35,6 @@ function createWindow() {
     win = null;
   });
 }
-
-ipcMain.on("ondragstart", (event, filePath) => {
-  console.log("hoge", filePath);
-  event.sender.startDrag({
-    file: filePath,
-    icon: "/path/to/icon.png"
-  });
-});
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
